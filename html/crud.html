@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin - CRUD</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Painel Administrativo - BubbleMix</h1>
+    <button onclick="window.location.href='index.html'">Voltar para Loja</button>
+  </header>
+  <main>
+    <section>
+      <h2>Produtos</h2>
+      <div id="produtos-crud"></div>
+      <!-- Modal para adicionar/editar produto -->
+      <div id="modal-produto" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;z-index:1000;">
+        <form id="form-produto" style="background:#fff;padding:24px 32px;border-radius:8px;min-width:320px;max-width:90vw;box-shadow:0 2px 16px #0002;display:flex;flex-direction:column;gap:12px;position:relative;">
+          <h3 id="modal-titulo">Novo Produto</h3>
+          <input type="hidden" id="produto-id">
+          <label>Nome:<input type="text" id="produto-nome" required></label>
+          <label>Descrição:<input type="text" id="produto-desc" required></label>
+          <label>Preço:<input type="number" id="produto-preco" step="0.01" required></label>
+          <label>Estoque:<input type="number" id="produto-estoque" required></label>
+          <label>Imagem:<input type="file" id="produto-img" accept="image/*"></label>
+          <img id="preview-img" src="" alt="Prévia" style="max-width:120px;max-height:120px;display:none;border:1px solid #ccc;">
+          <div style="display:flex;gap:8px;justify-content:flex-end;">
+            <button type="button" id="btn-cancelar">Cancelar</button>
+            <button type="submit" id="btn-salvar">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section>
+      <h2>Usuários</h2>
+      <div id="usuarios-crud"></div>
+    </section>
+  </main>
+  <script src="../js/crud.js"></script>
+</body>
+</html>

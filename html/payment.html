@@ -1,0 +1,123 @@
+<!DOCTYPE html> <!-- Diz que esse é um arquivo HTML -->
+<html lang="pt-BR"> <!-- Define que o site está em português do Brasil -->
+<head>
+  <meta charset="UTF-8"> <!-- Faz os acentos funcionarem certinho -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Faz o site funcionar bem no celular -->
+  <title>BubbleMix - Pagamento</title> <!-- O nome que aparece na aba do navegador -->
+  <link rel="stylesheet" href="../css/style.css"> <!-- Puxa o visual (cores, fontes, etc) do site -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Ícones legais -->
+</head>
+<body>
+  <header> <!-- Cabeçalho do site -->
+    <h1><i class="fas fa-money-bill-wave"></i> Pagamento</h1> <!-- Título com ícone de dinheiro -->
+    <p>Escolha seu método de pagamento.</p> <!-- Subtítulo dando instruções -->
+  </header>
+
+  <main> <!-- Parte principal da página -->
+    <section id="cart-summary"> <!-- Seção que mostra o carrinho -->
+      <h2>Resumo do Pedido</h2> <!-- Título da seção -->
+      <table> <!-- Tabela que mostra os chás escolhidos -->
+        <thead> <!-- Cabeçalho da tabela -->
+          <tr>
+            <th>Produto</th> <!-- Nome do chá -->
+            <th>Quantidade</th> <!-- Quantos o cliente escolheu -->
+            <th>Bolinhas</th> <!-- Se tem bolinhas -->
+            <th>Subtotal (R$)</th> <!-- Preço total de cada chá -->
+          </tr>
+        </thead>
+        <tbody id="cart-items">
+          <!-- Aqui os chás aparecem com JavaScript -->
+        </tbody>
+        <tfoot> <!-- Rodapé da tabela com o total -->
+          <tr>
+            <td colspan="3"><strong>Total</strong></td> <!-- Palavra "Total" ocupa 3 colunas -->
+            <td><strong>R$ <span id="total-geral">0,00</span></strong></td> <!-- Mostra o preço final -->
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <section id="payment-options"> <!-- Parte onde escolhe como pagar -->
+      <h2>Opções de Pagamento</h2> <!-- Título dessa seção -->
+
+      <div class="payment-method"> <!-- Botões de pagamento -->
+        <button id="pix-btn" class="payment-button">
+          <i class="fas fa-qrcode"></i> Pix <!-- Botão do Pix com ícone de QR code -->
+        </button>
+        <button id="credit-card-btn" class="payment-button">
+          <i class="far fa-credit-card"></i> Cartão de Crédito <!-- Botão do Cartão com ícone de cartão -->
+        </button>
+      </div>
+
+      <div id="pix-info" class="payment-details" style="display: none;"> <!-- Informação do Pix, escondida no início -->
+        <h3>Pague com Pix</h3>
+        <img src="../pngs/qr-code.png" alt="QR Code Pix" width="200"> <!-- Imagem do QR Code -->
+        <p>Escaneie o código QR acima para efetuar o pagamento.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BubbleMix - Todos os direitos reservados.</p> <!-- Rodapé com direitos -->
+  </footer>
+
+  <!-- Aqui começa o código JavaScript que deixa tudo funcionar -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Espera o site carregar todo pra começar
+  
+      const saved = localStorage.getItem('bubbleMixCart'); // Pega os itens do carrinho salvos no navegador
+      const cart = saved ? JSON.parse(saved) : []; // Se tiver coisa, transforma em lista. Se não, cria lista vazia
+  
+      const tbody = document.getElementById('cart-items'); // Parte da tabela onde os chás vão aparecer
+      let total = 0; // Começa com total zero
+  
+      if (cart.length === 0) {
+        // Se não tem nenhum chá no carrinho
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td colspan="4" style="text-align:center;">Nenhum item no pedido.</td>';
+        tbody.appendChild(tr); // Mostra mensagem de carrinho vazio
+      } else {
+        // Se tem chás no carrinho
+        cart.forEach(item => {
+          const { name, quantity, price, hasBoba, saborBoba } = item; // Pega os dados do chá
+          const subtotal = price * quantity; // Calcula o valor total daquele chá
+          total += subtotal; // Soma no total geral
+  
+          const tr = document.createElement('tr'); // Cria linha da tabela com os dados
+          tr.innerHTML = `
+            <td>${name}</td>
+            <td>${quantity}</td>
+            <td>${hasBoba ? saborBoba : '-'}</td>
+            <td>R$ ${subtotal.toFixed(2).replace('.', ',')}</td>
+          `;
+          tbody.appendChild(tr); // Coloca essa linha na tabela
+        });
+      }
+  
+      // Mostra o total geral na tela
+      document.getElementById('total-geral')
+              .textContent = total.toFixed(2).replace('.', ',');
+  
+      // Quando clicar no botão Pix, mostra o QR Code e inicia contagem de 15 segundos
+      document.getElementById('pix-btn').addEventListener('click', () => {
+        const pixInfo = document.getElementById('pix-info');
+        pixInfo.style.display = 'block'; // Mostra o QR Code
+  
+        // Após 30 segundos (15000 milissegundos), esconde o QR e redireciona para index.html
+        setTimeout(() => {
+          pixInfo.style.display = 'none'; // Esconde novamente o QR Code
+          window.location.href = 'index.html'; // Volta para a página principal
+        }, 30000); // 30* segundos
+      });
+  
+      // Quando clicar no botão Cartão, vai para a tela de cartão
+      document.getElementById('credit-card-btn').addEventListener('click', () => {
+        window.location.href = 'card.html'; // Leva para a página de pagamento com cartão
+      });
+    });
+  </script>
+  
+</body>
+</html>

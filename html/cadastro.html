@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro - BubbleMix</title>
+  <link rel="stylesheet" href="../css/cadastro.css">
+</head>
+<body>
+<div class="cadastro-container">
+    <h2>Criar Nova Conta</h2>
+    <form id="form-cadastro">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required>
+
+      <label for="confirmar-senha">Confirmar Senha:</label>
+      <input type="password" id="confirmar-senha" name="confirmar-senha" required>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+
+<div class="cadastro-extra">
+      <p>Já tem conta? <a href="login.html">Fazer login</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("form-cadastro").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const nome = document.getElementById("nome").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("senha").value;
+      const confirmar = document.getElementById("confirmar-senha").value;
+
+      if (senha !== confirmar) {
+        alert("As senhas não coincidem!");
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/registerUser', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, email, senha })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert("Cadastro realizado com sucesso!");
+          window.location.href = "login.html";
+        } else {
+          alert("Erro ao cadastrar: " + (data.error || 'Tente novamente.'));
+        }
+      } catch (err) {
+        alert("Erro ao conectar com o servidor. Tente novamente.");
+      }
+    });
+  </script>
+</body>
+</html>

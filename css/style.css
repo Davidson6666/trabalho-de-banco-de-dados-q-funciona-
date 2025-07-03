@@ -1,0 +1,260 @@
+/* Estilo geral da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Define a fonte padrão da página */
+    margin: 0; /* Remove a margem padrão do navegador */
+    padding: 0; /* Remove o preenchimento padrão do navegador */
+    background-color: #f8f8f8; /* Cor de fundo da página (bege claro) */
+    color: #333; /* Cor do texto (cinza escuro) */
+    line-height: 1.6; /* Define a altura da linha do texto para facilitar a leitura */
+}
+
+/* Estilo do cabeçalho da página */
+header {
+    background-color: #d4edda; /* Cor de fundo do cabeçalho (verde pastel claro) */
+    color: #155724; /* Cor do texto no cabeçalho (verde escuro) */
+    padding: 2rem 1rem; /* Define o espaçamento interno (2rem em cima e embaixo, 1rem nas laterais) */
+    text-align: center; /* Alinha o texto no centro */
+    margin-bottom: 2rem; /* Adiciona margem embaixo do cabeçalho */
+}
+
+/* Estilo do título dentro do cabeçalho */
+header h1 {
+    margin-bottom: 0.5rem; /* Espaçamento abaixo do título */
+}
+
+/* Estilo da área principal da página */
+main {
+    padding: 1rem; /* Adiciona preenchimento em torno do conteúdo */
+    max-width: 960px; /* Define a largura máxima da área principal */
+    margin: 0 auto; /* Centraliza a área principal na página */
+}
+
+/* Estilo das seções dentro da área principal */
+section {
+    margin-bottom: 2rem; /* Adiciona margem abaixo de cada seção */
+    padding: 1rem; /* Adiciona preenchimento interno em cada seção */
+    background-color: #fff; /* Cor de fundo das seções (branco) */
+    border-radius: 8px; /* Bordas arredondadas nas seções */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidade */
+}
+
+/* Estilo dos títulos das seções */
+section h2 {
+    color: #28a745; /* Cor do texto do título (verde) */
+    margin-top: 0; /* Remove a margem superior */
+    border-bottom: 2px solid #d4edda; /* Adiciona uma linha verde claro embaixo do título */
+    padding-bottom: 0.5rem; /* Adiciona preenchimento abaixo do título */
+    margin-bottom: 1rem; /* Espaçamento abaixo do título */
+}
+
+/* Estilo dos itens de chá na lista */
+.cha-item {
+    display: flex; /* Usa layout flexível */
+    align-items: center; /* Alinha os itens no centro verticalmente */
+    gap: 1rem; /* Adiciona espaço entre os itens */
+    padding: 1rem 0; /* Espaçamento interno de 1rem em cima e embaixo */
+    border-bottom: 1px solid #eee; /* Linha de separação entre os itens (cinza claro) */
+}
+
+/* Remove a linha de separação no último item */
+.cha-item:last-child {
+    border-bottom: none; /* Remove a borda do último item */
+}
+
+/* Estilo das imagens dos chás */
+.cha-item img {
+    border-radius: 5px; /* Bordas arredondadas nas imagens */
+}
+
+/* Estilo do nome do chá */
+.cha-item h3 {
+    margin: 0; /* Remove a margem ao redor do título */
+    color: #333; /* Cor do título (cinza escuro) */
+}
+
+/* Estilo das seções de controle (quantidade e bolinhas) */
+.controls {
+    margin-top: 0.5rem; /* Espaçamento acima dos controles */
+}
+
+/* Estilo dos rótulos dentro dos controles */
+.controls label {
+    margin-right: 0.5rem; /* Espaçamento à direita dos rótulos */
+    color: #555; /* Cor do texto dos rótulos (cinza médio) */
+}
+
+/* Estilo dos campos de entrada de número (quantidade) */
+.controls input[type="number"] {
+    width: 60px; /* Largura do campo de entrada */
+    padding: 0.3rem; /* Preenchimento interno no campo */
+    border: 1px solid #ccc; /* Borda cinza claro ao redor do campo */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+/* Estilo dos campos de entrada de checkbox */
+.controls input[type="checkbox"] {
+    margin-left: 0.3rem; /* Espaçamento à esquerda do checkbox */
+}
+
+/* Estilo para o botão de ações */
+#actions {
+    text-align: center; /* Centraliza o texto dos botões */
+}
+
+/* Estilo do botão de ação (Adicionar ao Carrinho / Comprar Agora) */
+.action-button {
+    background-color: #28a745; /* Cor de fundo verde */
+    color: white; /* Cor do texto (branco) */
+    border: none; /* Remove a borda padrão do botão */
+    padding: 0.8rem 1.5rem; /* Preenchimento interno do botão */
+    border-radius: 6px; /* Bordas arredondadas no botão */
+    cursor: pointer; /* Define o cursor como uma mãozinha ao passar sobre o botão */
+    font-size: 1rem; /* Tamanho da fonte do botão */
+    transition: background-color 0.3s ease; /* Transição suave na mudança de cor */
+    margin: 0.5rem; /* Espaçamento entre os botões */
+}
+
+/* Estilo do botão quando o mouse passa sobre ele */
+.action-button:hover {
+    background-color: #1e7e34; /* Cor de fundo verde mais escuro no hover */
+}
+
+/* Estilo para as opções de pagamento */
+#payment-options .payment-method {
+    display: flex; /* Usa layout flexível */
+    gap: 1rem; /* Espaço entre os itens */
+    justify-content: center; /* Centraliza os itens */
+    margin-bottom: 1.5rem; /* Espaçamento abaixo do grupo de métodos de pagamento */
+}
+
+/* Estilo para o botão de pagamento (para métodos de pagamento) */
+.payment-button {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white; /* Cor do texto (branco) */
+    border: none; /* Remove a borda padrão do botão */
+    padding: 0.8rem 1.5rem; /* Preenchimento interno do botão */
+    border-radius: 6px; /* Bordas arredondadas */
+    cursor: pointer; /* Define o cursor como uma mãozinha ao passar sobre o botão */
+    font-size: 1rem; /* Tamanho da fonte do botão */
+    transition: background-color 0.3s ease; /* Transição suave na mudança de cor */
+}
+
+/* Estilo do botão de pagamento quando o mouse passa sobre ele */
+.payment-button:hover {
+    background-color: #0056b3; /* Cor de fundo azul mais escuro no hover */
+}
+
+/* Estilo para o bloco de informações do Pix */
+#pix-info {
+    text-align: center; /* Centraliza o texto */
+    padding: 1rem; /* Preenchimento interno */
+    background-color: #f0f8ff; /* Cor de fundo azul bem claro */
+    border: 1px solid #add8e6; /* Borda azul claro */
+    border-radius: 8px; /* Bordas arredondadas */
+}
+
+/* Estilo para o formulário de dados do cartão de crédito */
+#card-form .form-group {
+    margin-bottom: 1rem; /* Espaçamento abaixo de cada campo do formulário */
+}
+
+/* Estilo para os rótulos no formulário */
+#card-form label {
+    display: block; /* Faz o rótulo ocupar toda a largura */
+    margin-bottom: 0.3rem; /* Espaçamento abaixo do rótulo */
+    color: #555; /* Cor do texto do rótulo */
+}
+
+/* Estilo para os campos de entrada de texto do formulário */
+#card-form input[type="text"] {
+    width: 100%; /* Faz o campo ocupar toda a largura disponível */
+    padding: 0.7rem; /* Preenchimento interno no campo */
+    border: 1px solid #ccc; /* Borda cinza claro ao redor do campo */
+    border-radius: 4px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Inclui o preenchimento no tamanho total do campo */
+}
+
+/* Estilo para a mensagem de sucesso ou erro do pagamento */
+#payment-message {
+    margin-top: 1rem; /* Espaçamento acima da mensagem */
+    padding: 0.8rem; /* Preenchimento interno na mensagem */
+    border-radius: 4px; /* Bordas arredondadas */
+    text-align: center; /* Alinha o texto no centro */
+}
+
+/* Estilo para a mensagem de sucesso */
+.message.success {
+    background-color: #d4edda; /* Fundo verde claro para sucesso */
+    color: #155724; /* Texto verde escuro */
+    border: 1px solid #c3e6cb; /* Borda verde claro */
+}
+
+/* Estilo para a mensagem de erro */
+.message.error {
+    background-color: #f8d7da; /* Fundo vermelho claro para erro */
+    color: #721c24; /* Texto vermelho escuro */
+    border: 1px solid #f5c6cb; /* Borda vermelho claro */
+}
+
+/* Estilo para o rodapé da página */
+footer {
+    text-align: center; /* Centraliza o texto */
+    padding: 1rem; /* Preenchimento interno */
+    background-color: #f0f0f0; /* Cor de fundo (cinza claro) */
+    color: #777; /* Cor do texto (cinza claro) */
+    margin-top: 2rem; /* Espaçamento acima do rodapé */
+    border-top: 1px solid #eee; /* Borda superior cinza claro */
+}
+
+/* Estilo para os ícones (aumenta o espaçamento à direita) */
+.fa-mug-hot, .fa-shopping-cart, .fa-bolt, .fa-money-bill-wave,
+.fa-qrcode, .fa-credit-card, .fa-calendar-alt, .fa-lock, .fa-check, .fa-circle {
+    margin-right: 0.5rem; /* Espaço à direita dos ícones */
+}
+
+/* Estilo para o feedback visual (toast) */
+.toast {
+    position: fixed; /* Fixa a posição na tela */
+    top: 20px; /* Distância do topo da tela */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta para centralizar exatamente */
+    background-color: #28a745; /* Cor de fundo verde */
+    color: white; /* Cor do texto (branco) */
+    padding: 1rem 1.5rem; /* Preenchimento interno */
+    border-radius: 6px; /* Bordas arredondadas */
+    opacity: 0; /* Torna invisível inicialmente */
+    visibility: hidden; /* Torna invisível inicialmente */
+    z-index: 1000; /* Garante que o toast apareça sobre outros elementos */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transição suave na mudança de visibilidade */
+}
+
+/* Exibe o toast quando a classe 'show' é adicionada */
+.toast.show {
+    opacity: 1; /* Torna o toast visível */
+    visibility: visible; /* Torna o toast visível */
+}
+
+/* Estilo para o efeito ao passar o mouse nos itens de chá */
+.cha-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Adiciona sombra suave no hover */
+    transform: translateY(-2px); /* Eleva o item um pouco */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave para o efeito de hover */
+}
+.login-btn-container {
+  text-align: right;
+  padding: 10px 20px;
+}
+
+.login-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #388e3c;
+}

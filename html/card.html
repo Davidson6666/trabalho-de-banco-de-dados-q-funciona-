@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Definimos que a página vai usar a codificação de caracteres UTF-8 (que é a mais comum para nosso idioma). -->
+  <meta charset="UTF-8">
+  <!-- Isso faz a página se ajustar corretamente em telas pequenas, como em celulares. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Aqui estamos dando um nome para a página que aparece na aba do navegador. -->
+  <title>BubbleMix - Pagamento com Cartão</title>
+  <!-- Estamos carregando um arquivo de estilo CSS para deixar a página bonitinha. -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- Estamos adicionando ícones legais (como o ícone do cartão de crédito) usando um site que disponibiliza fontes (Font Awesome). -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- A parte do topo da página com o título e uma explicação simples. -->
+  <header>
+    <h1><i class="far fa-credit-card"></i> Pagamento com Cartão</h1>
+    <p>Insira os dados do seu cartão de crédito.</p>
+  </header>
+
+  <main>
+    <!-- A seção onde o usuário vai colocar os dados do cartão de crédito. -->
+    <section id="card-form">
+      <h2>Dados do Cartão</h2>
+      <!-- O formulário onde o usuário digita os dados do cartão (número, validade e CVV). -->
+      <form id="credit-card-form">
+        <div class="form-group">
+          <label for="card-number"><i class="fas fa-credit-card"></i> Número do Cartão:</label>
+          <input type="text" id="card-number" name="card-number"
+                 placeholder="0000 0000 0000 0000" required>
+        </div>
+        <div class="form-group">
+          <label for="expiry-date"><i class="far fa-calendar-alt"></i> Validade:</label>
+          <input type="text" id="expiry-date" name="expiry-date"
+                 placeholder="MM/AA" required>
+        </div>
+        <div class="form-group">
+          <label for="cvv"><i class="fas fa-lock"></i> CVV:</label>
+          <input type="text" id="cvv" name="cvv"
+                 placeholder="123" required>
+        </div>
+        <!-- O botão para enviar os dados do cartão e finalizar o pagamento. -->
+        <button type="submit" class="action-button">
+          <i class="fas fa-check"></i> Finalizar Pagamento
+        </button>
+        <!-- Onde a mensagem de sucesso ou erro será mostrada. -->
+        <div id="payment-message" class="message" style="display: none;"></div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Rodapé da página, com os direitos autorais. -->
+  <footer>
+    <p>&copy; 2025 BubbleMix - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Aqui estamos dizendo que, quando o formulário for enviado, ele vai rodar essa função.
+    document.getElementById('credit-card-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Isso impede o envio padrão do formulário (não recarrega a página).
+
+      // Pegamos o número do cartão e tiramos os espaços.
+      const cardNumber = document
+        .getElementById('card-number')
+        .value.replace(/\s/g, '');
+      
+      // Onde a mensagem de erro ou sucesso vai aparecer.
+      const paymentMessage = document.getElementById('payment-message');
+
+      // Verificamos se o número do cartão é válido com a função "isValidLuhn".
+      if (isValidLuhn(cardNumber)) {
+        // Se o cartão for válido, mostramos a mensagem de sucesso.
+        paymentMessage.textContent = 'Pagamento realizado com sucesso!';
+        paymentMessage.className = 'message success'; // Estilo para sucesso.
+        paymentMessage.style.display = 'block'; // Mostra a mensagem.
+
+        // Limpa o carrinho de compras (se armazenado no localStorage).
+        localStorage.removeItem('bubbleMixCart');
+
+        // Depois de 5 segundos, redireciona o usuário para a página inicial (index.html).
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 5000);
+
+      } else {
+        // Se o número do cartão não for válido, mostramos a mensagem de erro.
+        paymentMessage.textContent = 'Número de cartão inválido.';
+        paymentMessage.className = 'message error'; // Estilo para erro.
+        paymentMessage.style.display = 'block'; // Mostra a mensagem.
+      }
+    });
+
+    // Função para validar o número do cartão usando o algoritmo de Luhn (uma forma de verificar se o número do cartão está correto).
+    function isValidLuhn(cardNumber) {
+  let sum = 0; // Variável que acumula a soma dos dígitos processados
+  let isEven = false; // Indica se o dígito atual está em uma posição "par" da direita para a esquerda
+
+  // Percorre o número do cartão de trás para frente
+  for (let i = cardNumber.length - 1; i >= 0; i--) {
+    let digit = parseInt(cardNumber.charAt(i), 10); // Converte o caractere para número inteiro
+
+    if (isEven) {
+      digit *= 2; // Dobra o dígito se estiver em uma posição par (contando da direita)
+
+      if (digit > 9) digit -= 9; // Se o resultado da multiplicação for maior que 9, subtrai 9
+    }
+
+    sum += digit; // Soma o dígito (processado ou não) ao total
+    isEven = !isEven; // Alterna entre par e ímpar a cada iteração
+  }
+
+  // Retorna true se a soma final for divisível por 10, o que indica um número de cartão válido
+  return (sum % 10) === 0;
+}
+
+  </script>
+</body>
+</html>
